@@ -52,6 +52,7 @@ You may need to prefix install/update and uninstall make commands with `sudo`.
 ## Copyright
 
 Originally written by Frederik Seiffert ego@frederikseiffert.de http://www.frederikseiffert.de/blueutil/
+
 Maintained by Ivan Kuchin (2011-2025) https://github.com/toy
 
 Copyright (c) 2026 Nikolay Jolshin. See [LICENSE.txt](LICENSE.txt) for details.
