@@ -1,6 +1,7 @@
-Originally written by Frederik Seiffert <ego@frederikseiffert.de>
+Originally written by Frederik Seiffert <ego@frederikseiffert.de>.
+Maintained by Ivan Kuchin (2011-2025) <https://github.com/toy>.
 
-Copyright (c) 2011-2025 Ivan Kuchin
+Copyright (c) 2026 Nikolay Jolshin.
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

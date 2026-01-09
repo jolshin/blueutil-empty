@@ -726,6 +726,7 @@ const char *hci_error_descriptions[] = {
 @interface DevicePairDelegate : NSObject <IOBluetoothDevicePairDelegate>
 @property (readonly) IOReturn errorCode;
 @property char *requestedPin;
+@property BOOL useEmptyPin; //pin code bypass option
 @end
 @implementation DevicePairDelegate
 - (const char *)errorDescription {
@@ -746,7 +747,14 @@ const char *hci_error_descriptions[] = {
   BluetoothPINCode pinCode;
   ByteCount pinCodeSize;
 
-  if (_requestedPin) {
+    if (_useEmptyPin) {
+      // Используем пустой PIN
+      eprintf("Using empty PIN for pairing with \"%s\" (%s)\n",
+        [[[sender device] name] UTF8String],
+        [[[sender device] addressString] UTF8String]);
+      
+      pinCodeSize = 0;
+    } else if (_requestedPin) {
     eprintf("Input pin %.16s on \"%s\" (%s)\n",
       _requestedPin,
       [[[sender device] name] UTF8String],
@@ -875,6 +883,7 @@ struct args_device_id {
 struct args_pair {
   char *device_id;
   char *pin_code;
+    BOOL use_empty_pin;
 };
 
 struct args_wait_connection_change {
@@ -1235,7 +1244,17 @@ int main(int argc, char *argv[]) {
         ALLOC_ARGS(pair);
 
         args->device_id = optarg;
-        args->pin_code = next_optarg(argc, argv);
+          args->pin_code = NULL;
+          args->use_empty_pin = false;
+
+          char *next_arg = next_optarg(argc, argv);
+          if (next_arg) {
+            if (0 == strcasecmp(next_arg, "empty")) {
+              args->use_empty_pin = true;
+            } else {
+              args->pin_code = next_arg;
+            }
+          }
 
         if (args->pin_code && strlen(args->pin_code) > 16) {
           eprintf("Pairing pin can't be longer than 16 characters, got %lu (%s)\n",

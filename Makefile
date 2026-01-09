@@ -13,13 +13,6 @@ build: blueutil
 format:
 	clang-format -i *.m
 
-update_usage: blueutil
-	./update_usage
-	touch update_usage
-
-test: build
-	./test
-
 clean:
 	$(RM) blueutil
 
