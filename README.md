@@ -1,4 +1,4 @@
-# Decription
+# Description
 
 Blueutil is a CLI for bluetooth on OSX currently maintained by Ivan Kuchin [https://github.com/toy](https://github.com/toy) and the original version is located at [https://github.com/toy/blueutil](https://github.com/toy/blueutil)
 
