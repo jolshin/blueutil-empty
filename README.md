@@ -47,7 +47,7 @@ make install
 make uninstall
 ```
 
-You may need to prefix install/update and uninstall make commands with `sudo`.
+You may need to prefix install and uninstall make commands with `sudo`.
 
 ## Copyright
 
